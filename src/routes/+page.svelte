@@ -1,18 +1,23 @@
 <script lang="ts">
+    import Icon from "@iconify/svelte";
+
     const projects = [
         {
-            title: "Canonical Web Architecture",
-            description: "Developing robust front-end systems and component libraries that power the Ubuntu ecosystem. Focused on accessibility, performance, and global scale.",
-            link: "https://ubuntu.com",
-            img: "/images/project1.jpg", // Replace with your paths
-            tags: ["Svelte", "Vanilla", "Python"]
+            title: "Software Engineer @ Canonical",
+            period: "Jan 2026 — Present",
+            description: "Member of the Web Team, engineering the front-end architecture and high-traffic platforms that power the Ubuntu ecosystem globally.",
+            link: "https://canonical.com",
+            github: "", // Optional
+            img: "/images/canonical-work.jpg",
+            tags: ["Svelte", "Vanilla", "Python", "Go"]
         },
         {
-            title: "Open Source Tooling",
-            description: "A collection of developer-centric tools designed to streamline workflows within the Linux community. Built with a focus on reliability and clean CLI patterns.",
-            link: "https://github.com/Skazitron",
-            img: "/images/project2.jpg",
-            tags: ["Go", "React", "Docker"]
+            title: "Portfolio Website",
+            description: "A high-performance personal site built with Svelte 5, featuring a brutalist-inspired design and custom responsive navigation.",
+            link: "https://shahir.dev",
+            github: "https://github.com/Skazitron/portfolio-website",
+            img: "/images/project1.jpg",
+            tags: ["SvelteKit", "Tailwind CSS", "Vite"]
         }
     ];
 </script>
@@ -41,9 +46,9 @@
             Hey, I'm Shahir. 
             <span class="block text-2xl lg:text-4xl font-bold mt-4 leading-snug text-gray-600">
                 I engineer 
-                <span class="font-black text-blue-700 bg-blue-50 px-2 py-1 rounded-md">scalable web platforms</span> 
+                <span class="font-black text-blue-700 bg-blue-50 hover:bg-blue-100 px-2 py-1 transition-colors rounded-md">scalable web platforms</span> 
                 and 
-                <span class="font-black text-red-700 bg-red-50 px-2 py-1 rounded-md">digital experiences</span>.
+                <span class="font-black text-red-700 bg-red-50 hover:bg-red-100 transition-colors px-2 py-1 rounded-md">digital experiences</span>.
             </span>
         </h1>
         
@@ -66,61 +71,60 @@
 <div class="px-6 lg:px-40">
     <hr class="border-t-4 border-black w-full" />
 </div>
-
 <section id="projects" class="px-6 lg:px-40 py-20 bg-white">
     <h2 class="text-5xl font-black mb-20 tracking-tighter italic uppercase">Work & Projects</h2>
     
     <div class="space-y-32">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center group">
-            <div class="order-2 md:order-1 flex flex-col space-y-6">
-                <h3 class="text-3xl font-bold">{projects[0].title}</h3>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    {projects[0].description}
-                </p>
-                <div class="flex gap-2">
-                    {#each projects[0].tags as tag}
-                        <span class="text-xs font-bold uppercase tracking-widest bg-gray-100 px-3 py-1 rounded-full">{tag}</span>
-                    {/each}
-                </div>
-                <a href={projects[0].link} target="_blank" class="inline-flex items-center font-bold text-black group-hover:translate-x-2 transition-transform">
-                    View Project <span class="ml-2">→</span>
-                </a>
-            </div>
-            <div class="order-1 md:order-2 overflow-hidden rounded-xl border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] bg-gray-100">
-                <img 
-                    src={projects[0].img} 
-                    alt={projects[0].title} 
-                    class="w-full h-auto object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                />
-            </div>
-        </div>
+        {#each projects as project, i}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center group">
+                
+                <div class="{i % 2 === 0 ? 'order-2 md:order-1' : 'order-2'} flex flex-col space-y-4">
+                    
+                    {#if project.period}
+                        <span class="text-sm font-bold text-blue-600 tracking-widest uppercase">{project.period}</span>
+                    {/if}
 
-        <div class="flex justify-center">
-            <div class="w-24 h-1 bg-gray-200"></div>
-        </div>
+                    <h3 class="text-3xl font-bold">{project.title}</h3>
+                    
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        {project.description}
+                    </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center group">
-            <div class="overflow-hidden rounded-xl border-4 border-black shadow-[-12px_12px_0px_0px_rgba(0,0,0,1)] bg-gray-100">
-                <img 
-                    src={projects[1].img} 
-                    alt={projects[1].title} 
-                    class="w-full h-auto object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                />
-            </div>
-            <div class="flex flex-col space-y-6">
-                <h3 class="text-3xl font-bold">{projects[1].title}</h3>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    {projects[1].description}
-                </p>
-                <div class="flex gap-2">
-                    {#each projects[1].tags as tag}
-                        <span class="text-xs font-bold uppercase tracking-widest bg-gray-100 px-3 py-1 rounded-full">{tag}</span>
-                    {/each}
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        {#each project.tags as tag}
+                            <span class="text-xs font-bold uppercase tracking-widest bg-gray-100 px-3 py-1 rounded-full">{tag}</span>
+                        {/each}
+                    </div>
+
+                    <div class="flex items-center space-x-6 pt-4">
+                        {#if project.github}
+                            <a href={project.github} target="_blank" class="text-gray-400 hover:text-black transition-colors" title="View Source">
+                                <Icon icon="mdi:github" width="28" height="28" />
+                            </a>
+                        {/if}
+                        {#if project.link}
+                            <a href={project.link} target="_blank" class="inline-flex items-center font-bold text-black hover:translate-x-2 transition-transform">
+                                View Work <span class="ml-2">→</span>
+                            </a>
+                        {/if}
+
+                    </div>
                 </div>
-                <a href={projects[1].link} target="_blank" class="inline-flex items-center font-bold text-black group-hover:translate-x-2 transition-transform">
-                    View Project <span class="ml-2">→</span>
-                </a>
+
+                <div class="{i % 2 === 0 ? 'order-1 md:order-2' : 'order-1'} overflow-hidden rounded-xl border-4 border-black bg-gray-100 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] {i % 2 !== 0 ? 'md:shadow-[-12px_12px_0px_0px_rgba(0,0,0,1)]' : ''}">
+                    <img 
+                        src={project.img} 
+                        alt={project.title} 
+                        class="w-full h-auto object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                    />
+                </div>
             </div>
-        </div>
+
+            {#if i < projects.length - 1}
+                <div class="flex justify-center">
+                    <div class="w-24 h-1 bg-gray-100"></div>
+                </div>
+            {/if}
+        {/each}
     </div>
 </section>
