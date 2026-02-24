@@ -1,23 +1,34 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
 
-    const projects = [
+    const experiences = [
         {
-            title: "Software Engineer @ Canonical",
-            period: "Jan 2026 — Present",
+            title: "Software Engineer",
+            company: "Canonical",
+            period: "December 2025 — Present",
             description: "Member of the Web Team, engineering the front-end architecture and high-traffic platforms that power the Ubuntu ecosystem globally.",
-            link: "https://canonical.com",
-            github: "", // Optional
-            img: "/images/canonical-work.jpg",
-            tags: ["Svelte", "Vanilla", "Python", "Go"]
+            github: "https://github.com/canonical", 
+            link: "https://github.com/canonical",
+            img: "/images/canonical_wallpaper.jpg",
+            tags: ["React", "JavaScript", "Vanilla", "Python", "Go"]
         },
         {
-            title: "Portfolio Website",
-            description: "A high-performance personal site built with Svelte 5, featuring a brutalist-inspired design and custom responsive navigation.",
-            link: "https://shahir.dev",
-            github: "https://github.com/Skazitron/portfolio-website",
-            img: "/images/project1.jpg",
-            tags: ["SvelteKit", "Tailwind CSS", "Vite"]
+            title: "Mobile SWE",
+            company: "Bangshi LLC",
+            period: "October 2024 — September 2025",
+            description: "Developed the Pallio platform — a peer-to-peer cross platform iOS and Android app for sharing lightweight data.",
+            link: "",
+            img: "/images/pallio.png",
+            tags: ["React Native", "Swift", "Java", "Firebase", "Zustand"]
+        },
+        {
+            title: "Software Development Intern",
+            company: "Purdue University",
+            period: "October 2024 — September 2025",
+            description: "Developed code for the the Variate and Circuit educational platforms.",
+            link: "https://www.purdue.edu/provost/innovation-hub/",
+            img: "/images/purdue.jpg",
+            tags: ["React", "JavaScript", "Tanstack Query", "C#", ".NET"]
         }
     ];
 </script>
@@ -58,8 +69,8 @@
         </p>
 
         <div class="pt-6 flex flex-wrap justify-center lg:justify-start gap-4">
-            <a href="#projects" class="px-8 py-4 bg-black text-white text-lg rounded-full hover:bg-gray-800 transition hover:-translate-y-1 shadow-lg font-bold">
-                Explore my work ↓
+            <a href="#experience" class="px-8 py-4 bg-black text-white text-lg rounded-full hover:bg-gray-800 transition hover:-translate-y-1 shadow-lg font-bold">
+                View Experience ↓
             </a>
             <a href="#about" class="px-8 py-4 bg-white text-black text-lg border-2 border-black rounded-full hover:bg-gray-50 transition hover:-translate-y-1 font-bold">
                 More about me
@@ -71,56 +82,59 @@
 <div class="px-6 lg:px-40">
     <hr class="border-t-4 border-black w-full" />
 </div>
-<section id="projects" class="px-6 lg:px-40 py-20 bg-white">
-    <h2 class="text-5xl font-black mb-20 tracking-tighter italic uppercase">Work & Projects</h2>
+
+<section id="experience" class="px-6 lg:px-40 py-20 bg-white">
+    <h2 class="text-5xl font-black mb-20 tracking-tighter italic uppercase">Experience</h2>
     
     <div class="space-y-32">
-        {#each projects as project, i}
+        {#each experiences as exp, i}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center group">
                 
                 <div class="{i % 2 === 0 ? 'order-2 md:order-1' : 'order-2'} flex flex-col space-y-4">
                     
-                    {#if project.period}
-                        <span class="text-sm font-bold text-blue-600 tracking-widest uppercase">{project.period}</span>
+                    {#if exp.period}
+                        <span class="text-sm font-bold text-blue-600 tracking-widest uppercase">{exp.period}</span>
                     {/if}
 
-                    <h3 class="text-3xl font-bold">{project.title}</h3>
+                    <div class="flex flex-col space-y-1">
+                        <h3 class="text-3xl font-bold">{exp.title}</h3>
+                        <h4 class="text-xl font-medium text-gray-500">{exp.company}</h4>
+                    </div>
                     
                     <p class="text-lg text-gray-600 leading-relaxed">
-                        {project.description}
+                        {exp.description}
                     </p>
 
                     <div class="flex flex-wrap gap-2 pt-2">
-                        {#each project.tags as tag}
+                        {#each exp.tags as tag}
                             <span class="text-xs font-bold uppercase tracking-widest bg-gray-100 px-3 py-1 rounded-full">{tag}</span>
                         {/each}
                     </div>
 
                     <div class="flex items-center space-x-6 pt-4">
-                        {#if project.github}
-                            <a href={project.github} target="_blank" class="text-gray-400 hover:text-black transition-colors" title="View Source">
+                        {#if exp.github}
+                            <a href={exp.github} target="_blank" class="text-gray-400 hover:text-black transition-colors" title="View Source">
                                 <Icon icon="mdi:github" width="28" height="28" />
                             </a>
                         {/if}
-                        {#if project.link}
-                            <a href={project.link} target="_blank" class="inline-flex items-center font-bold text-black hover:translate-x-2 transition-transform">
+                        {#if exp.link}
+                            <a href={exp.link} target="_blank" class="inline-flex items-center font-bold text-black hover:translate-x-2 transition-transform">
                                 View Work <span class="ml-2">→</span>
                             </a>
                         {/if}
-
                     </div>
                 </div>
 
-                <div class="{i % 2 === 0 ? 'order-1 md:order-2' : 'order-1'} overflow-hidden rounded-xl border-4 border-black bg-gray-100 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] {i % 2 !== 0 ? 'md:shadow-[-12px_12px_0px_0px_rgba(0,0,0,1)]' : ''}">
+                <div class="{i % 2 === 0 ? 'order-1 md:order-2' : 'order-1'} overflow-hidden rounded-xl border-4 border-black bg-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] {i % 2 !== 0 ? 'md:shadow-[-12px_12px_0px_0px_rgba(0,0,0,1)]' : ''}">
                     <img 
-                        src={project.img} 
-                        alt={project.title} 
-                        class="w-full h-auto object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                        src={exp.img} 
+                        alt={exp.company} 
+                        class="w-full h-auto object-cover group-hover:scale-105 transition-all duration-500"
                     />
                 </div>
             </div>
 
-            {#if i < projects.length - 1}
+            {#if i < experiences.length - 1}
                 <div class="flex justify-center">
                     <div class="w-24 h-1 bg-gray-100"></div>
                 </div>

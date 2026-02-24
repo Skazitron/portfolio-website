@@ -50,6 +50,7 @@
         <ul class="hidden md:flex space-x-1 items-center">
             {@render headerlink('/', 'home', 'nav-home')}
             {@render headerlink('/#about', 'about', 'nav-about')}
+            {@render headerlink('/#experience', 'experience', 'nav-experience')}
             {@render headerlink('/#projects', 'my work', 'nav-projects')}
             
             <div 
@@ -91,6 +92,7 @@
                 {@render headerlink('/', 'home', 'nav-home-mobile')}
                 {@render headerlink('/#about', 'about', 'nav-about-mobile')}
                 {@render headerlink('/#projects', 'my work', 'nav-projects-mobile')}
+                {@render headerlink('/#experience', 'experience', 'nav-experience')}
                 
                 <li class="flex flex-col w-full bg-gray-50 rounded-xl overflow-hidden border-2 border-transparent focus-within:border-black transition-colors">
                     <div class="flex items-center justify-between w-full px-4">
