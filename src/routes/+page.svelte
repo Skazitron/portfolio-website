@@ -1,7 +1,8 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import Icon from "@iconify/svelte";
     import ProjectCard from "../components/ProjectCard.svelte";
-    import { slide } from "svelte/transition"; // Added for smooth dropdown animation
+    import { slide } from "svelte/transition";
 
     const experiences = [
         {
@@ -10,7 +11,6 @@
             period: "December 2025 — Present",
             description: "Member of the Web Team, engineering the front-end architecture and high-traffic platforms that power the Ubuntu ecosystem globally.",
             github: "https://github.com/canonical", 
-            link: "https://github.com/canonical",
             img: "/images/canonical_wallpaper.jpg",
             tags: ["JavaScript", "Vanilla", "Python", "Go", "Kubernetes", "Docker", "HTML"]
         },
@@ -28,12 +28,11 @@
             title: "Software Development Intern",
             company: "Purdue University",
             period: "October 2024 — September 2025",
-            description: "Developed code for the Variate and Circuit educational platforms.",
+            description: "Developed code for the Variate and Circuit educational platforms used by 45,000 students.",
             link: "https://www.purdue.edu/provost/innovation-hub/",
             img: "/images/purdue.jpg",
             tags: ["React", "JavaScript", "Tanstack Query", "C#", ".NET"]
         },
-        // Added a 4th placeholder so you can test the "Show More" button! 
         {
             title: "Previous Role",
             company: "Some Company",
@@ -46,7 +45,7 @@
     ];
 
     const projectsData = [
-        { title: "Project One", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", img: "/images/project1.jpg", tags: ["Svelte", "Rust", "Go"], link: "#" },
+        { title: "Project One", description: "Lorem ipsum dolor sit amet...", img: "/images/project1.jpg", tags: ["Svelte", "Rust", "Go"], link: "#" },
         { title: "Project Two", description: "Description here.", img: "/images/project2.jpg", tags: ["React"], link: "#" },
         { title: "Project Three", description: "This is hidden on mobile until clicked.", img: "/images/project3.jpg", tags: ["Vue"], link: "#" },
         { title: "Project Four", description: "This is hidden on mobile until clicked.", img: "/images/project4.jpg", tags: ["Go"], link: "#" },
@@ -55,6 +54,143 @@
 
     let showAllExperiences = $state(false);
     let showAllProjectsMobile = $state(false);
+
+    let favoriteSkills = [
+        "Linux Administration", 
+        "System Architecture", 
+        "Go", 
+        "Rust", 
+        "Svelte", 
+        "Silicon Design"
+    ];
+
+    let skills = [
+        "JavaScript", "TypeScript", "Python", "C++", "C#", "Java", "Swift",
+        "NodeJS", "Express",
+        "React", "React Native", "Vue", "HTML", ".NET", 
+        "Docker", "Kubernetes", "Git", "Apache Nginx", "Firebase", 
+        "Zustand", "Tanstack Query", 
+        "Hardware Troubleshooting", "Software Development", "Data Analysis", "Financial Markets",
+        "SQLite", "MongoDB", "PostgresQL"
+    ];
+    let canvas: HTMLCanvasElement;
+    let ctx: CanvasRenderingContext2D | null;
+    let snake = [{x: 200, y: 200}];
+    let dx = 20; let dy = 0;
+    let foodX = 0; let foodY = 0;
+    let gameActive = false;
+
+    function randomTen(min: number, max: number) { 
+        return Math.round((Math.random() * (max - min) + min) / 20) * 20; 
+    }
+
+    function createFood() {
+        if (!canvas) return;
+        foodX = randomTen(0, canvas.width - 20);
+        foodY = randomTen(0, canvas.height - 20);
+    }
+
+    function drawSnakePart(snakePart: {x: number, y: number}) {
+        if (!ctx) return;
+        ctx.fillStyle = '#4ade80'; 
+        ctx.fillRect(snakePart.x, snakePart.y, 20, 20);
+        ctx.strokeStyle = '#000';
+        ctx.strokeRect(snakePart.x, snakePart.y, 20, 20);
+    }
+
+    function drawFood() {
+        if (!ctx) return;
+        ctx.fillStyle = '#f87171';
+        ctx.fillRect(foodX, foodY, 20, 20);
+        ctx.strokeStyle = '#000';
+        ctx.strokeRect(foodX, foodY, 20, 20);
+    }
+
+    function advanceSnake() {
+        const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+        snake.unshift(head);
+        if (snake[0].x === foodX && snake[0].y === foodY) {
+            createFood();
+        } else {
+            snake.pop();
+        }
+    }
+
+    function clearCanvas() {
+        if (!ctx || !canvas) return;
+        ctx.fillStyle = "#111827"; 
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function hasGameEnded() {
+        if (!canvas) return true;
+        for (let i = 4; i < snake.length; i++) {
+            if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true;
+        }
+        const hitLeft = snake[0].x < 0; 
+        const hitRight = snake[0].x >= canvas.width;
+        const hitTop = snake[0].y < 0; 
+        const hitBottom = snake[0].y >= canvas.height;
+        return hitLeft || hitRight || hitTop || hitBottom;
+    }
+
+    function main() {
+        if (hasGameEnded()) {
+            gameActive = false;
+            if (ctx && canvas) {
+                ctx.fillStyle = "rgba(0,0,0,0.5)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "white";
+                ctx.font = "bold 24px monospace";
+                ctx.fillText("Game Over! Click to restart.", 20, canvas.height / 2);
+            }
+            return;
+        }
+        gameActive = true;
+        setTimeout(function onTick() {
+            clearCanvas();
+            drawFood();
+            advanceSnake();
+            snake.forEach(drawSnakePart);
+            main();
+        }, 100);
+    }
+
+    onMount(() => {
+        if (canvas) {
+            ctx = canvas.getContext('2d');
+            createFood();
+            clearCanvas();
+            if (ctx) {
+                ctx.fillStyle = "white";
+                ctx.font = "bold 24px monospace";
+                ctx.fillText("Click to Start Snake", 60, 200);
+            }
+        }
+
+        window.addEventListener("keydown", function(e) {
+            if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1 && gameActive) {
+                e.preventDefault();
+            }
+        }, false);
+
+        document.addEventListener("keydown", function(event) {
+            if (!gameActive) return;
+            const LEFT_KEY = 37; const RIGHT_KEY = 39; const UP_KEY = 38; const DOWN_KEY = 40;
+            const keyPressed = event.keyCode;
+            const goingUp = dy === -20; const goingDown = dy === 20; const goingRight = dx === 20; const goingLeft = dx === -20;
+            if (keyPressed === LEFT_KEY && !goingRight) { dx = -20; dy = 0; }
+            if (keyPressed === UP_KEY && !goingDown) { dx = 0; dy = -20; }
+            if (keyPressed === RIGHT_KEY && !goingLeft) { dx = 20; dy = 0; }
+            if (keyPressed === DOWN_KEY && !goingUp) { dx = 0; dy = 20; }
+        });
+    });
+
+    function startGame() {
+        if (!gameActive) {
+            snake = [{x: 200, y: 200}]; dx = 20; dy = 0; createFood(); main();
+        }
+    }
 </script>
 
 
@@ -136,15 +272,25 @@
                             {/each}
                         </div>
 
-                        <div class="flex items-center space-x-6 pt-4">
+                        <div class="flex flex-wrap items-center gap-4 pt-4 mt-2">
                             {#if exp.github}
-                                <a href={exp.github} target="_blank" class="text-gray-400 hover:text-black transition-colors" title="View Source">
-                                    <Icon icon="mdi:github" width="28" height="28" />
+                                <a 
+                                    href={exp.github} 
+                                    target="_blank" 
+                                    class="inline-flex items-center px-5 py-2.5 bg-white text-black font-bold border-2 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-1 hover:translate-x-1 transition-all"
+                                >
+                                    <Icon icon="mdi:github" width="22" height="22" class="mr-2" /> 
+                                    GitHub
                                 </a>
                             {/if}
+                            
                             {#if exp.link}
-                                <a href={exp.link} target="_blank" class="inline-flex items-center font-bold text-black hover:translate-x-2 transition-transform">
-                                    View Work <span class="ml-2">→</span>
+                                <a 
+                                    href={exp.link} 
+                                    target="_blank" 
+                                    class="group/btn inline-flex items-center px-6 py-2.5 bg-black text-white font-bold border-2 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-1 hover:translate-x-1 hover:bg-gray-800 transition-all"
+                                >
+                                    View Work <span class="ml-2 group-hover/btn:translate-x-1 transition-transform">→</span>
                                 </a>
                             {/if}
                         </div>
@@ -215,18 +361,107 @@
     {/if}
 </section>
 
-<section id="about" class="px-6 md:px-12 lg:px-40 py-20 bg-white">
-    <h2 class="text-5xl font-black mb-20 tracking-tighter italic uppercase">About Me</h2>
-    <div>
-        <h3>Educational History</h3>
+<section id="about" class="px-6 md:px-12 lg:px-40 py-20 bg-white text-gray-800">
+    <h2 class="text-5xl font-black mb-16 tracking-tighter italic uppercase text-black">About Me</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="col-span-1 md:col-span-2 bg-blue-50 border-4 border-black rounded-2xl p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 flex flex-col justify-between">
+            <div>
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                    <h3 class="text-3xl font-black uppercase tracking-tight">Education</h3>
+                    <span class="text-sm font-bold bg-black text-white px-3 py-1 rounded-full uppercase tracking-widest w-fit border-2 border-black">Aug 2020 — May 2025</span>
+                </div>
+                
+                <h4 class="text-2xl font-bold mb-3"><span class="bg-blue-200 px-2 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">B.S. in Computer Science</span></h4>
+                <p class="text-lg font-medium leading-relaxed mb-6 text-gray-800">
+                    Purdue University, West Lafayette, IN. <br>
+                    Focused on low-level system architecture, high-performance computing, and scalable software design. Bridged the gap between hardware boundaries and software execution through rigorous technical application and environment optimization.
+                </p>
+            </div>
+
+            <div>
+                <h5 class="text-sm font-black uppercase tracking-widest text-gray-500 mb-3">Relevant Coursework</h5>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Operating Systems</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Computer Architecture</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Systems Programming</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Data Structures & Algorithms</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Distributed Systems</span>
+                </div>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="group relative col-span-1 bg-red-400 border-4 border-black rounded-2xl p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-center items-center text-center cursor-pointer">
+            <div class="absolute inset-0 bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
+            <span class="relative z-10 text-4xl mb-2">🤫</span>
+            <h3 class="relative z-10 text-2xl font-black text-white uppercase tracking-tight">Classified Project</h3>
+            <p class="relative z-10 text-red-100 font-bold mt-2 opacity-0 group-hover:opacity-100 transition-opacity delay-100">Do not click...</p>
+        </a>
+
+        <div class="col-span-1 md:col-span-3 bg-yellow-50 border-4 border-black rounded-2xl p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+            <h3 class="text-3xl font-black mb-8 uppercase tracking-tight">Technical Arsenal</h3>
+            
+            <div class="mb-8">
+                <h4 class="text-lg font-black uppercase tracking-widest text-gray-500 mb-4 border-b-4 border-black inline-block pb-1">Top Picks</h4>
+                <div class="flex flex-wrap gap-3 mt-2">
+                    {#each favoriteSkills as skill}
+                        <span class="px-5 py-2 bg-blue-300 border-2 border-black rounded-full font-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-yellow-400 transition-all cursor-default">
+                            {skill} ⭐
+                        </span>
+                    {/each}
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-black uppercase tracking-widest text-gray-500 mb-4 border-b-4 border-black inline-block pb-1">Languages & Tools</h4>
+                <div class="flex flex-wrap gap-3 mt-2">
+                    {#each skills as skill}
+                        <span class="px-4 py-2 bg-white border-2 border-black rounded-full font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-gray-100 transition-all cursor-default">
+                            {skill}
+                        </span>
+                    {/each}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-1 bg-pink-50 border-4 border-black rounded-2xl p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300">
+            <h3 class="text-3xl font-black mb-4 uppercase tracking-tight">AFK</h3>
+            <p class="text-lg font-medium leading-relaxed">
+                When I'm not optimizing my Linux setup, I'm usually hitting the gym 🏋️‍♂️, exploring National Parks 🌲, seeking out specialty coffee ☕, or catching up on horror movies 🍿.
+            </p>
+        </div>
+
+        <div class="col-span-1 md:col-span-2 bg-gray-100 border-4 border-black rounded-2xl p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row items-center gap-8 transition-all duration-300">
+            <div class="flex-1">
+                <h3 class="text-3xl font-black mb-4 uppercase tracking-tight">Take a Break</h3>
+                <p class="text-lg font-medium mb-4">Click inside the arcade screen and use your arrow keys to beat your high score.</p>
+            </div>
+            <div class="border-4 border-black rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-black shrink-0">
+                <canvas 
+                    bind:this={canvas} 
+                    width="400" 
+                    height="400" 
+                    class="bg-gray-900 cursor-pointer w-62.5 h-62.5 md:w-75 md:h-75"
+                    onclick={startGame}
+                ></canvas>
+            </div>
+        </div>
+
     </div>
-    <div>
-        <h3>Skills</h3>
-    </div>
-    <div>
-        <h3>Interests</h3>
-    </div>
-    <div>
-        <h3>Hire me section</h3>
+    
+    <div class="mt-20" id="hire-me">
+        <div class="bg-black text-white rounded-3xl p-12 text-center border-4 border-black shadow-[12px_12px_0px_0px_rgba(200,200,200,1)] relative overflow-hidden group">
+            <div class="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
+            
+            <div class="relative z-10 flex flex-col items-center">
+                <h3 class="text-5xl font-black mb-6 tracking-tight uppercase">Think I'm good for a role?</h3>
+                <p class="text-2xl font-medium text-gray-300 group-hover:text-blue-100 transition-colors mb-8 max-w-2xl">
+                    Whether it's optimizing systems or building out the front-end, I'm open to new opportunities.
+                </p>
+                <a href="mailto:your.email@example.com" class="inline-block bg-white text-black text-xl font-black uppercase py-4 px-12 rounded-full border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-yellow-300 transition-all">
+                    Let's Talk
+                </a>
+            </div>
+        </div>
     </div>
 </section>
