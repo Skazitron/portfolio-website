@@ -11,6 +11,7 @@ collections:
   - name: personal-posts
     label: personal-posts
     folder: /content/personal
+    create: true
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Timestamp, name: timestamp, widget: datetime}
@@ -19,6 +20,7 @@ collections:
   - name: shariq-posts
     label: shariq-posts
     folder: /content/shariq
+    create: true
     fields: 
       - { label: Title, name: title, widget: string}
       - { label: Timestamp, name: timestamp, widget: datetime}
