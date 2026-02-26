@@ -1,6 +1,7 @@
 <script lang="ts">
     import { displayDropdown } from '../dropdown.svelte';
     import Icon from "@iconify/svelte";
+    import { page } from '$app/state'; // Added to track active routes
 
     let closeTimeout: ReturnType<typeof setTimeout>;
 
@@ -28,7 +29,8 @@
     <a 
         href={link} 
         target={target}
-        class="w-full px-4 py-3 md:py-2 flex flex-col items-start md:items-center font-bold rounded-full hover:bg-black hover:text-white transition-all hover:-translate-y-0.5"
+        class="w-full px-4 py-3 md:py-2 flex flex-col items-start md:items-center font-bold rounded-full transition-all hover:-translate-y-0.5 
+        {page.url.pathname === link ? 'bg-black text-white' : 'hover:bg-black hover:text-white'}"
         onclick={() => { isMobileMenuOpen = false; mobileCoolStuffOpen = false; }}
     >
         {@html text}
@@ -62,7 +64,7 @@
                 onmouseleave={handleDropdown}
             >
                 <li id="cool-projects" class="flex w-full md:w-auto">
-                    <a href="/cool-stuff" class="w-full px-4 py-2 font-bold rounded-full hover:bg-black hover:text-white transition-all hover:-translate-y-0.5" onfocus={cancelClose}>
+                    <a href="/cool-stuff" class="w-full px-4 py-2 font-bold rounded-full hover:bg-black hover:text-white transition-all hover:-translate-y-0.5 {page.url.pathname.includes('blog') ? 'bg-yellow-300' : ''}" onfocus={cancelClose}>
                         cool stuff &#8659;
                     </a>
                 </li>
@@ -76,7 +78,7 @@
             </div>
             
             {@render headerlink('/resume.pdf', 'resume', 'nav-resume', '_blank')}
-            {@render headerlink('/#hire-me', 'hire me!', 'hire-me')}
+            {@render headerlink('/#hire-me', 'hire me!', 'nav-hire-me')}
         </ul>
 
         <div class="flex space-x-4 items-center shrink-0">

@@ -37,7 +37,7 @@
             title: "Operations Specialist",
             company: "Purdue RecWell",
             period: "May 2024 — September 2024",
-            description: "Worked as an Operations Specialist at the Francis Cordova Recreation Center — serving over 20,000 patrons a day",
+            description: "Worked as an Operations Specialist at the France A. Cordova Recreation Center — serving over 20,000 patrons a day",
             link: "https://www.purdue.edu/recwell/",
             img: "/images/corec.webp",
             tags: ["First Aid", "CPR", "Teamwork"]
@@ -45,7 +45,7 @@
     ];
 
     const projectsData = [
-        { title: "Project One", description: "Lorem ipsum dolor sit amet...", img: "/images/project1.jpg", tags: ["Svelte", "Rust", "Go"], link: "#" },
+        { title: "Portfolio Website", description: "The website that you're currently on.", img: "/images/portfolio.png", tags: ["Svelte", "SvelteKit", "Sveltia CMS", "Tailwind CSS"], link: "/" },
     ];
 
     let showAllExperiences = $state(false);
@@ -242,48 +242,56 @@
 </script>
 
 <svelte:window onclick={closeTooltips} />
-
-<section id="hero" class="min-h-[85vh] flex flex-col lg:flex-row items-center justify-center px-6 lg:px-40 py-20 gap-12 lg:gap-24 bg-white">
-    <div class="flex flex-col items-center space-y-6 shrink-0 text-center">
+<section id="hero" class="min-h-[85vh] flex flex-col lg:flex-row items-center justify-center px-6 lg:px-40 py-20 gap-12 lg:gap-20 bg-white selection:bg-black selection:text-white">
+    
+    <div class="flex flex-col items-center shrink-0 text-center relative mt-10 lg:mt-0">
         <div class="relative group">
-            <a href="https://github.com/Skazitron" target="_blank">
+            <a href="https://github.com/Skazitron" target="_blank" class="block relative z-10">
                 <img 
                     src="/images/cropped_img.jpg" 
                     alt="Shahir Kazi"
-                    class="rounded-full w-56 h-56 lg:w-72 lg:h-72 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-transform group-hover:-rotate-2"
+                    class="rounded-full w-56 h-56 lg:w-72 lg:h-72 object-cover border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105 bg-white"
                 />
-                <span class="absolute bottom-0 right-0 text-5xl animate-bounce-slow cursor-default" title="Hello!">👋</span>
+                <span class="absolute bottom-0 right-0 text-6xl animate-bounce-slow cursor-default drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]" title="Hello!">👋</span>
             </a>
-        </div>
-        <a href="https://github.com/Skazitron" target="_blank" class="no-underline">
-            <div class="bg-gray-100 px-6 py-2 rounded-full italic text-gray-700 font-medium hover:bg-black hover:text-white transition-colors">
+            </div>
+
+        <a href="https://github.com/Skazitron" target="_blank" class="no-underline mt-10 relative z-20 block hover:-translate-y-1 hover:-translate-x-1 transition-transform">
+            <div class="bg-yellow-300 border-4 border-black px-6 py-2 font-black text-sm uppercase tracking-widest text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-2deg] hover:rotate-0 transition-transform">
                 Software Engineer @ Canonical
             </div>
         </a>
     </div>
 
-    <div class="flex flex-col space-y-6 max-w-2xl text-center lg:text-left">
-        <h1 class="text-4xl lg:text-6xl font-black leading-tight tracking-tight text-black">
+    <div class="flex flex-col max-w-2xl text-center lg:text-left z-10">
+        <h1 class="text-4xl lg:text-6xl font-black leading-tight tracking-tighter text-black uppercase">
             Hey, I'm Shahir. 
-            <span class="block text-2xl lg:text-4xl font-bold mt-4 leading-snug text-gray-600">
+            
+            <span class="block text-2xl lg:text-4xl font-black mt-6 leading-[1.8] text-black">
                 I engineer 
-                <span class="font-black text-blue-700 bg-blue-50 hover:bg-blue-100 px-2 py-1 transition-colors rounded-md cursor-default">scalable web platforms</span> 
+                
+                <span class="inline-block bg-blue-500 text-white border-4 border-black px-3 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-2deg] hover:rotate-1 transition-transform cursor-default mx-1 my-2 lg:my-3">
+                    high-performance interfaces
+                </span> 
+                
                 and 
-                <span class="font-black text-red-700 bg-red-50 hover:bg-red-100 transition-colors px-2 py-1 rounded-md cursor-default">digital experiences</span>.
+                
+                <span class="inline-block bg-red-400 text-black border-4 border-black px-3 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[1deg] hover:-rotate-1 transition-transform cursor-default mx-1 my-2 lg:my-3">
+                    open-source ecosystems
+                </span>.
             </span>
         </h1>
         
-        <p class="text-xl text-gray-700 leading-relaxed font-medium max-w-lg mx-auto lg:mx-0">
-            I build the front-end architecture and high-traffic platforms that connect millions of users to the open-source ecosystem.
-            In my free time, I'm likely lifting, reading, or watching Lovecraftian horror.
+        <p class="mt-10 text-lg lg:text-xl text-black font-bold leading-relaxed max-w-xl mx-auto lg:mx-0 border-l-8 border-yellow-300 pl-6">
+            Hey there! I'm an engineer on Canonical's Web Team who loves tinkering with different technologies. In my free time, I'm probably lifting, reading, or bingeing Lovecraftian horror movies.
         </p>
 
-        <div class="pt-6 flex flex-wrap justify-center lg:justify-start gap-4">
-            <a href="#experience" class="px-8 py-4 bg-black text-white text-lg rounded-full hover:bg-gray-800 transition hover:-translate-y-1 shadow-lg font-bold">
+        <div class="pt-12 flex flex-col sm:flex-row justify-center lg:justify-start gap-6">
+            <a href="#experience" class="px-8 py-4 bg-black text-white text-base lg:text-lg font-black uppercase tracking-widest border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1.5 hover:translate-y-1.5 hover:bg-yellow-300 hover:text-black transition-all">
                 View Experience ↓
             </a>
-            <a href="#about" class="px-8 py-4 bg-white text-black text-lg border-2 border-black rounded-full hover:bg-gray-50 transition hover:-translate-y-1 font-bold">
-                More about me
+            <a href="#about" class="px-8 py-4 bg-white text-black text-base lg:text-lg font-black uppercase tracking-widest border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1.5 hover:translate-y-1.5 hover:bg-red-400 transition-all">
+                More About Me
             </a>
         </div>
     </div>
@@ -467,7 +475,7 @@
                     <div class="bg-black text-white px-3 py-1 mt-2 inline-block font-bold border-2 border-black -rotate-2 shadow-[2px_2px_0px_0px_rgba(255,105,180,1)]">
                         Incline Bench PR: 285 lbs
                     </div>
-                    <p class="text-md font-medium text-gray-801 leading-snug mt-4">
+                    <p class="text-md italic font-medium text-gray-700 leading-snug mt-4">
                         Note: my display picture is a little outdated.
                     </p>
                     
@@ -518,11 +526,6 @@
                     <a href="https://www.linkedin.com/in/arnobkazi/" target="_blank" class="inline-flex items-center gap-2 bg-white text-black text-xl font-black uppercase py-4 px-8 rounded-full border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-blue-300 transition-all">
                         <Icon icon="devicon:linkedin" width="28" height="28" />
                         LinkedIn
-                    </a>
-
-                    <a href="mailto:your.shah@example.com" class="inline-flex items-center gap-2 bg-white text-black text-xl font-black uppercase py-4 px-8 rounded-full border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-yellow-300 transition-all">
-                        <Icon icon="mdi:email" width="28" height="28" />
-                        Email
                     </a>
 
                     <a href="/resume.pdf" target="_blank" class="inline-flex items-center gap-2 bg-white text-black text-xl font-black uppercase py-4 px-8 rounded-full border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-green-300 transition-all">
