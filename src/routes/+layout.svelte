@@ -1,21 +1,24 @@
 <script lang="ts">
-    import { page } from '$app/state';
     import '@fontsource-variable/inter';
     import '@fontsource-variable/playfair-display';
+    import { page } from '$app/state';
+    import './layout.css';
     import Navbar from '../components/Navbar.svelte';
-    
     let { children } = $props();
 
     let pageTitle = $derived.by(() => {
         const path = page.url.pathname;
         
+        // Return 'Home' if it's the root route
         if (path === '/') return 'Home';
 
+        // Get the last segment of the path (e.g., /company/about-us -> about-us)
         const lastSegment = path.split('/').filter(Boolean).pop() || '';
 
+        // Replace hyphens/underscores with spaces and capitalize each word
         return lastSegment
             .split(/[-_]/)
-            .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
     });
 </script>
