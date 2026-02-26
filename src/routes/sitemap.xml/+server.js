@@ -2,19 +2,14 @@ export async function GET() {
     // The base URL of your website
     const website = 'https://shahirkazi.com';
 
-    // 1. Manually add your static routes here
     const staticPages = [
         '',             // The home page (/)
         '/cool-stuff'   // Your cool-stuff route
     ];
 
-    // 2. Dynamically find all Markdown files in your content folder
-    // This looks for all .md files and fetches their paths
-    const markdownFiles = import.meta.glob('/content/**/*.md', { eager: true });
+    const markdownFiles = import.meta.glob('/content/**/*.md', { query: '?raw', eager: true });
     
-    // 3. Extract the collection and slug from the file paths to build the URLs
     const dynamicUrls = Object.keys(markdownFiles).map((path) => {
-        // Path looks like: /content/personal/my-first-post.md
         const pathParts = path.split('/');
         
         const collection = pathParts[pathParts.length - 2]; // e.g., 'personal'
