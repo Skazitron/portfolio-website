@@ -88,7 +88,7 @@ let { data }: { data: PageData } = $props();
 
 <style>
     :global(.prose) { 
-        font-family: 'Playfair Display Variable', serif; 
+        font-family: 'Inter Variable', sans-serif; 
     }
     
     :global(.prose h2) { 
@@ -101,9 +101,9 @@ let { data }: { data: PageData } = $props();
     
     :global(.prose p) { 
         margin-top: 1em;
-        margin-bottom: 0.4em; 
+        margin-bottom: 1em; 
         font-size: medium;
-        line-height: 1.0; 
+        line-height: 1.5; 
     }
 
     :global(.prose li) {
