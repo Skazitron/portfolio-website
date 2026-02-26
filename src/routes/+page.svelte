@@ -252,7 +252,7 @@
                     alt="Shahir Kazi"
                     class="rounded-full w-56 h-56 lg:w-72 lg:h-72 object-cover border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105 bg-white"
                 />
-                <span class="absolute bottom-0 right-0 text-6xl animate-bounce-slow cursor-default drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]" title="Hello!">👋</span>
+                <span class="absolute bottom-0 right-0 text-6xl animate-bounce-slow cursor-default drop-shadow-[4px_4px_0px_rgba(0,0,0,1)] animate-tilt" title="Hello!">👋</span>
             </a>
             </div>
 
@@ -537,3 +537,14 @@
         </div>
     </div>
 </section>
+
+<style>
+    @keyframes tilt {
+        0%, 100% { transform: rotate(-5deg); }
+        50% { transform: rotate(5deg); }
+    }
+
+    .animate-tilt {
+        animation: tilt 2s infinite ease-in-out;
+    }
+</style>
