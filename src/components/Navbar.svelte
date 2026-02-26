@@ -23,10 +23,11 @@
     };
 </script>
 
-{#snippet headerlink(link: string, text: string, id: string)}
+{#snippet headerlink(link: string, text: string, id: string, target?: string)}
 <li id={id} class="flex w-full md:w-auto">
     <a 
         href={link} 
+        target={target}
         class="w-full px-4 py-3 md:py-2 flex flex-col items-start md:items-center font-bold rounded-full hover:bg-black hover:text-white transition-all hover:-translate-y-0.5"
         onclick={() => { isMobileMenuOpen = false; mobileCoolStuffOpen = false; }}
     >
@@ -73,6 +74,8 @@
                     </ul>
                 {/if}
             </div>
+            
+            {@render headerlink('/resume.pdf', 'resume', 'nav-resume', '_blank')}
             {@render headerlink('/#hire-me', 'hire me!', 'hire-me')}
         </ul>
 
@@ -111,6 +114,7 @@
                     {/if}
                 </li>
 
+                {@render headerlink('/resume.pdf', 'resume', 'nav-resume-mobile', '_blank')}
                 {@render headerlink('/#hire-me', 'hire me!', 'hire-me-mobile')}
             </ul>
         </div>
