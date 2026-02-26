@@ -8,9 +8,18 @@ media_folder: /static/media
 public_folder: /media
 
 collections:
-  - name: posts
-    label: Posts
-    folder: /content/posts
+  - name: personal-posts
+    label: personal-posts
+    folder: /content/personal
     fields:
       - { label: Title, name: title, widget: string }
+      - { label: Timestamp, name: timestamp, widget: datetime}
       - { label: Body, name: body, widget: richtext }
+
+  - name: shariq-posts
+    label: shariq-posts
+    folder: /content/shariq
+    fields: 
+      - { label: Title, name: title, widget: string}
+      - { label: Timestamp, name: timestamp, widget: datetime}
+      - { label: Body, name: body, widget: richtext}
