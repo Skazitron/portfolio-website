@@ -112,6 +112,8 @@
         "MongoDB": "NoSQL document database."
     };
 
+    let showAllSkills = $state(false);
+
     let canvas: HTMLCanvasElement;
     let ctx: CanvasRenderingContext2D | null;
     let snake = [{x: 200, y: 200}];
@@ -268,7 +270,7 @@
             Hey, I'm Shahir. 
             
             <span class="block text-2xl lg:text-4xl font-black mt-6 leading-[1.8] text-black">
-                I engineer 
+                I&nbsp;engineer
                 
                 <span class="inline-block bg-blue-500 text-white border-4 border-black px-3 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-2deg] hover:rotate-1 transition-transform cursor-default mx-1 my-2 lg:my-3">
                     high-performance interfaces
@@ -386,28 +388,33 @@
     <h2 class="text-5xl font-black mb-16 tracking-tighter italic uppercase text-black">About Me</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="col-span-1 md:col-span-2 bg-blue-50 border-4 border-black rounded-2xl p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 flex flex-col justify-between">
-            <div>
-                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+        <div class="col-span-1 md:col-span-2 bg-blue-50 border-4 border-black rounded-2xl p-6 md:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 flex flex-col justify-between">    <div>
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-3 md:gap-2">
                     <h3 class="text-3xl font-black uppercase tracking-tight">Education</h3>
-                    <span class="text-sm font-bold bg-black text-white px-3 py-1 rounded-full uppercase tracking-widest w-fit border-2 border-black">Aug 2020 — May 2025</span>
+                    <span class="text-xs md:text-sm font-bold bg-black text-white px-3 py-1 rounded-full uppercase tracking-widest w-fit border-2 border-black">Aug 2020 — May 2025</span>
                 </div>
                 
-                <h4 class="text-2xl font-bold mb-3"><span class="bg-blue-200 px-2 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">B.S. in Computer Science</span></h4>
-                <p class="text-lg font-medium leading-relaxed mb-6 text-gray-800">
-                    Purdue University, West Lafayette, IN. <br>
+                <h4 class="text-xl md:text-2xl font-bold mb-5 leading-normal">
+                    <span class="bg-blue-200 px-2 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] inline-block">B.S. in Computer Science</span>
+                </h4>
+                
+                <div class="text-base md:text-lg font-medium leading-relaxed mb-6 text-gray-800">
+                    <span class="italic font-semibold text-black">
+                        Purdue University, West Lafayette, IN
+                    </span> 
+                    <br>
                     Focused on low-level system architecture, high-performance computing, and scalable software design. Bridged the gap between hardware boundaries and software execution through rigorous technical application and environment optimization.
-                </p>
+                </div>
             </div>
-
+        
             <div>
-                <h5 class="text-sm font-black uppercase tracking-widest text-gray-500 mb-3">Relevant Coursework</h5>
+                <h5 class="text-sm font-black uppercase tracking-widest text-gray-500 mb-3 mt-2">Relevant Coursework</h5>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Operating Systems</span>
-                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Computer Architecture</span>
-                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Systems Programming</span>
-                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Data Structures & Algorithms</span>
-                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Distributed Systems</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-xs md:text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Operating Systems</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-xs md:text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Computer Architecture</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-xs md:text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Systems Programming</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-xs md:text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Data Structures & Algorithms</span>
+                    <span class="px-3 py-1 bg-white border-2 border-black rounded-md font-bold text-xs md:text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Distributed Systems</span>
                 </div>
             </div>
         </div>
@@ -440,12 +447,11 @@
                     {/each}
                 </div>
             </div>
-
             <div>
                 <h4 class="text-lg font-black uppercase tracking-widest text-gray-500 mb-4 border-b-4 border-black inline-block pb-1">Languages & Tools</h4>
                 <div class="flex flex-wrap gap-3 mt-2">
-                    {#each skills as skill}
-                        <div class="relative inline-block">
+                    {#each skills as skill, i}
+                        <div class="relative {i > 5 && !showAllSkills ? 'hidden md:inline-block' : 'inline-block'}">
                             <button onclick={(e) => toggleTooltip(skill, e)} class="px-4 py-2 bg-white border-2 border-black rounded-full font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-gray-100 transition-all cursor-pointer">
                                 {skill}
                             </button>
@@ -457,6 +463,15 @@
                             {/if}
                         </div>
                     {/each}
+                    
+                    {#if !showAllSkills && skills.length > 6}
+                        <button 
+                            onclick={() => showAllSkills = true} 
+                            class="md:hidden px-4 py-2 bg-yellow-300 border-2 border-black rounded-full font-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all cursor-pointer"
+                        >
+                            + {skills.length - 6} More
+                        </button>
+                    {/if}
                 </div>
             </div>
         </div>
@@ -520,7 +535,7 @@
             <div class="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
             
             <div class="relative z-10 flex flex-col items-center">
-                <h3 class="text-4xl md:text-5xl font-black mb-10 tracking-tight uppercase">Think I'm good for a role?</h3>
+                <h3 class="text-4xl md:text-5xl font-black mb-10 tracking-tight uppercase">Have some work in mind for me?</h3>
                 
                 <div class="flex flex-wrap justify-center gap-6">
                     <a href="https://www.linkedin.com/in/arnobkazi/" target="_blank" class="inline-flex items-center gap-2 bg-white text-black text-xl font-black uppercase py-4 px-8 rounded-full border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-blue-300 transition-all">
