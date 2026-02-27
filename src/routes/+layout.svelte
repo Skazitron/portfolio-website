@@ -32,20 +32,21 @@
     <link rel="icon" href="/favicon.png" />
     <title>{pageTitle} | Shahir Kazi</title>
 
-    <meta name="description" content="Software engineering portfolio of Shahir Kazi. Explore my projects, skills, and development experience." />
+    <meta name="description" content="Software engineering portfolio of Shahir Kazi. Explore my projects, skills, and development experience. Reach out to me to me on LinkedIn if you wanna get in touch!" />
     <meta name="author" content="Shahir Kazi" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={page.url.href} />
     <meta property="og:title" content="{pageTitle} | Shahir Kazi" />
-    <meta property="og:description" content="Software engineering portfolio of Shahir Kazi. Explore my projects, skills, and development experience." />
+    <meta property="og:description" content="Software engineering portfolio of Shahir Kazi. Explore my projects, skills, and development experience. Reach out to me to me on LinkedIn if you wanna get in touch!" />
     <meta property="og:image" content="https://shahirkazi.com/thumbnail.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={page.url.href} />
     <meta name="twitter:title" content="{pageTitle} | Shahir Kazi" />
-    <meta name="twitter:description" content="Software engineering portfolio of Shahir Kazi. Explore my projects, skills, and development experience." />
+    <meta name="twitter:description" content="Software engineering portfolio of Shahir Kazi. Explore my projects, skills, and development experience.  Reach out to me to me on LinkedIn if you wanna get in touch!" />
     <meta name="twitter:image" content="https://shahirkazi.com/thumbnail.jpg" />
+
 </svelte:head>
 
 <svelte:window bind:scrollY />
