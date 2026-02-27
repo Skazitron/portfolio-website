@@ -1,4 +1,4 @@
-<footer class="bg-white border-t-8 border-black pt-16 pb-8 px-6 lg:px-10 mt-20 relative z-10 selection:bg-black selection:text-white">
+<footer class="bg-white border-t-8 border-black pt-16 pb-8 px-6 lg:px-10 relative z-10 selection:bg-black selection:text-white">
     <div class="max-w-400 mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
         
         <div class="flex flex-col items-center md:items-start text-center md:text-left">

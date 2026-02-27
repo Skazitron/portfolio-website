@@ -36,6 +36,7 @@ let { data }: { data: PageData } = $props();
                     {#each data.allPosts ?? [] as p}
                         <li>
                             <a href="/{page.params.collection}/{p.slug}" 
+                               data-sveltekit-reload
                                class="block text-sm font-bold hover:underline {p.slug === page.params.slug ? 'text-blue-700' : ''}">
                                 <span class="block opacity-60 text-xs">{formatDate(p.timestamp ?? '')}</span>
                                 {p.title}
