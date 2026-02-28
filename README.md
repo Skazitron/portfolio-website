@@ -3,6 +3,7 @@
 - You are free to run it locally.
 - You are allowed to copy this template
 - Just make sure to change the details, we can't have two shahirkazi.com's competiting with one another.
+- Amazing SEO
 
 ## To run it locall
 - Clone the repo
