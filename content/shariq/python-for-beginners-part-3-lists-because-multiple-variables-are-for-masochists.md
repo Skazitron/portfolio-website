@@ -1,12 +1,9 @@
 ---
-title: 'Python for Beginners Part 3: Lists (Because multiple variables are for masochists)'
+title: 'Python for Dummies Pt.3: Lists (Because multiple variables are for masochists)'
 timestamp: 2026-03-08T15:14:00
 ---
 
 Enter **Lists**. A list is essentially a single box where you can throw all your data so it’s not cluttering up the rest of your script.
-
-
-
 
 ### 1. Creating a List
 
@@ -25,11 +22,7 @@ lucky_numbers = [7, 11, 21, 42]
 mixed_bag = ["Shariq", 15, True, 9.5]
 
 print(f"My gadgets: {cool_gadgets}")
-
 ```
-
-
-
 
 ### 2. How to Grab an Item (Indexing)
 
@@ -44,16 +37,12 @@ Python
 fruits = ["Apple", "Banana", "Cherry"]
 
 # Grabbing the first item (Index 0, obviously)
-print(f"The first fruit is: {fruits[0]}") 
+print(f"The first fruit is: {fruits[0]}")
 
-# Grabbing the last item 
+# Grabbing the last item
 # We use -1 because we're too lazy to count how long the list is
-print(f"The last fruit is: {fruits[-1]}") 
-
+print(f"The last fruit is: {fruits[-1]}")
 ```
-
-
-
 
 ### 3. Changing and Adding Items
 
@@ -76,11 +65,7 @@ inventory[0] = "Laser Gun"
 inventory.append("Map")
 
 print(f"Updated Inventory: {inventory}")
-
 ```
-
-
-
 
 ### 4. Useful List Tricks
 
@@ -99,12 +84,8 @@ print(f"I have {len(colors)} colors.")
 
 # Checking if 'Purple' exists (Spoiler: it doesn't)
 print(f"Is Purple in the list? {'Purple' in colors}")
-
 ```
 
 There you go. You can now manage a whole collection of data without losing your mind. Next time, we’ll talk about **Loops**, which is basically how we force the computer to do the same boring task over and over again so we don't have to.
-
-
-
 
 **Should I prep a "sarcastic quiz" to see if he actually absorbed any of this?**
