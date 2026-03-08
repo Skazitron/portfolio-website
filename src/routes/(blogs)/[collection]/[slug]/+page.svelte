@@ -131,4 +131,32 @@
     :global(.prose code::after) {
         content: none !important;
     }
+
+    :global(.prose table) {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        border: 4px solid black;
+        box-shadow: 8px 8px 0px black;
+        background-color: white;
+    }
+
+    :global(.prose thead) {
+        background-color: #fde047; /* Tailwind yellow-300 */
+        border-bottom: 4px solid black;
+    }
+
+    :global(.prose th), 
+    :global(.prose td) {
+        border: 2px solid black;
+        padding: 1rem;
+        text-align: left;
+    }
+
+    :global(.prose th) {
+        font-weight: 900;
+        text-transform: uppercase;
+        color: black;
+    }
 </style>
