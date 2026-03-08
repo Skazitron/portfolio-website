@@ -48,7 +48,7 @@ print(f"The last fruit is: {fruits[-1]}")
 
 Lists are **mutable**. That’s just a fancy computer science word for "you can change your mind later."
 
-- **`.append()`**  -  Tacks something onto the end of the list. 
+- **`.append()`**  -  Tacks something onto the end of the list.
 -  **`.remove()`** -  Deletes your mistakes.
 
 Python
