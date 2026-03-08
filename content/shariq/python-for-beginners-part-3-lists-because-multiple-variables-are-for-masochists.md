@@ -47,9 +47,13 @@ print(f"The last fruit is: {fruits[-1]}")
 ### 3. Changing and Adding Items
 
 Lists are **mutable**. That’s just a fancy computer science word for "you can change your mind later."
+| Action | What it actually does |
+| :--- | :--- |
+| \*\*Change\*\* | Overwrites whatever was already there. |
+| \*\*\`.append()\`\*\* | Tacks something onto the end of the list. |
+| \*\*\`.remove()\`\*\* | Deletes your mistakes. |
 
-- **`.append()`**  -  Tacks something onto the end of the list.
--  **`.remove()`** -  Deletes your mistakes.
+Here is the text after the table. Note the blank line above this.
 
 Python
 
